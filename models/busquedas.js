@@ -14,7 +14,7 @@ class Busquedas {
 
         try{
             //petición http
-            const resp = await axios.get('https://reqres.in/api/users?page=2')
+            const resp = await axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/medellin.json?language=es&access_token=pk.eyJ1IjoiZWxraW5ndXRpZXJyZXgiLCJhIjoiY2t3ZTd1dmtpMDI1dzJxbzR1eXd2YWt1ZCJ9.fj3dqcFr-YprZvEejFqa_w&limit=5')
             console.log( resp.data );
 
 
