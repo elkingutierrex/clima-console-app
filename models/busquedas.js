@@ -10,19 +10,24 @@ class Busquedas {
 
     }
 
+    get paramsMapbox(){
+        return {
+            'access_token': 'pk.eyJ1IjoiZWxraW5ndXRpZXJyZXgiLCJhIjoiY2t3ZTd1dmtpMDI1dzJxbzR1eXd2YWt1ZCJ9.fj3dqcFr-YprZvEejFqa_w',
+            'limit': '5',
+            'language' : 'es'
+        }
+    }
+
     async ciudad ( lugar = '' ){
 
         try{
             //petición http
             console.log('buscame esta ', lugar );
-            // const resp = await axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/medellin.json?language=es&access_token=pk.eyJ1IjoiZWxraW5ndXRpZXJyZXgiLCJhIjoiY2t3ZTd1dmtpMDI1dzJxbzR1eXd2YWt1ZCJ9.fj3dqcFr-YprZvEejFqa_w&limit=5')
-            const instance = await axios.create({
-                baseUrl : `https://api.mapbox.com/geocoding/v5/mapbox.places/${ lugar }.json`,
-                params: {
-                    'access_token': 'pk.eyJ1IjoiZWxraW5ndXRpZXJyZXgiLCJhIjoiY2t3ZTd1dmtpMDI1dzJxbzR1eXd2YWt1ZCJ9.fj3dqcFr-YprZvEejFqa_w',
-                    'limit': '5',
-                    'language' : 'es'
-                }
+            // const resp = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lugar}.json?language=es&access_token=pk.eyJ1IjoiZWxraW5ndXRpZXJyZXgiLCJhIjoiY2t3ZTd1dmtpMDI1dzJxbzR1eXd2YWt1ZCJ9.fj3dqcFr-YprZvEejFqa_w&limit=5`)
+            const instance = axios.create({
+                baseURL : `https://api.mapbox.com/geocoding/v5/mapbox.places/${ lugar }.json`,
+                
+                params: this.paramsMapbox
             })
             const resp = await instance.get();
             console.log( resp.data );
