@@ -12,7 +12,7 @@ class Busquedas {
 
     get paramsMapbox(){
         return {
-            'access_token': 'pk.eyJ1IjoiZWxraW5ndXRpZXJyZXgiLCJhIjoiY2t3ZTd1dmtpMDI1dzJxbzR1eXd2YWt1ZCJ9.fj3dqcFr-YprZvEejFqa_w',
+            'access_token': process.env.MAPBOX_KEY,
             'limit': '5',
             'language' : 'es'
         }
@@ -21,9 +21,8 @@ class Busquedas {
     async ciudad ( lugar = '' ){
 
         try{
-            //petición http
-            console.log('buscame esta ', lugar );
-            // const resp = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${lugar}.json?language=es&access_token=pk.eyJ1IjoiZWxraW5ndXRpZXJyZXgiLCJhIjoiY2t3ZTd1dmtpMDI1dzJxbzR1eXd2YWt1ZCJ9.fj3dqcFr-YprZvEejFqa_w&limit=5`)
+           
+            console.log('buscame esta ', lugar );           
             const instance = axios.create({
                 baseURL : `https://api.mapbox.com/geocoding/v5/mapbox.places/${ lugar }.json`,
                 
