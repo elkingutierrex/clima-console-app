@@ -29,14 +29,15 @@ const main = async () =>{
                 // Clima
                 const clima = await busquedas.climaLugar( lugarSel.lat, lugarSel.lng );
                
+                console.clear();
                 console.log( '\nInformación de la ciudad\n'.green );
-                console.log( 'Ciudad:'.green, lugarSel.nombre );
+                console.log( 'Ciudad:', lugarSel.nombre.green );
                 console.log( 'Lat:'.green, lugarSel.lat);
                 console.log( 'Lng'.green, lugarSel.lng);
                 console.log( 'Temp'.green, clima.temp );
                 console.log( 'Min'.green, clima.min );
                 console.log( 'Max'.green, clima.max );
-                console.log( 'Descripción'.green, clima.desc );
+                console.log( 'Descripción'.green, clima.desc.green );
 
                 break;
             case 2:
