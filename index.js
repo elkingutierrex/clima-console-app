@@ -21,16 +21,23 @@ const main = async () =>{
 
                 const termino = await leerInput( 'Ciudad: ' );
                 const lugares = await busquedas.ciudad( termino );
+
+                // Seleccionar lugar 
                 const id = await listarLugares( lugares );
                 const lugarSel = await lugares.find( l => l.id === id );
+
+                // Clima
+                const clima = await busquedas.climaLugar( lugarSel.lat, lugarSel.lng );
                
                 console.log( '\nInformación de la ciudad\n'.green );
                 console.log( 'Ciudad:'.green, lugarSel.nombre );
                 console.log( 'Lat:'.green, lugarSel.lat);
                 console.log( 'Lng'.green, lugarSel.lng);
-                console.log( 'Temp'.green );
-                console.log( 'Min'.green );
-                console.log( 'Max'.green );
+                console.log( 'Temp'.green, clima.temp );
+                console.log( 'Min'.green, clima.min );
+                console.log( 'Max'.green, clima.max );
+                console.log( 'Descripción'.green, clima.desc );
+
                 break;
             case 2:
                 

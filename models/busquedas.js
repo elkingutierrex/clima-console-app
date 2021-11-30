@@ -18,11 +18,17 @@ class Busquedas {
         }
     }
 
+    get paramsOpenWeather(){
+        return {     
+            'units' : 'metric',
+            'appid' : process.env.OPENWATHER,
+            'lang': 'es'
+        }
+    }
+
     async ciudad ( lugar = '' ){
 
         try{
-           
-            console.log('buscame esta ', lugar );           
             const instance = axios.create({
                 baseURL : `https://api.mapbox.com/geocoding/v5/mapbox.places/${ lugar }.json`,
                 
@@ -35,14 +41,29 @@ class Busquedas {
                 lng: lugar.center[0],
                 lat: lugar.center[1]
             }))
-
-
-            return [];
+           
         }catch (error) {
             return [];
         }
+    }
 
-      
+    async climaLugar ( lat, lon ){
+        try{
+            const instance = axios.create({
+                baseURL : `https://api.openweathermap.org/data/2.5/weather`,
+                params: {...this.paramsOpenWeather, lat, lon }
+            })
+            const resp = await instance.get();           
+            const { weather, main } = resp.data;
+            return {
+                desc: weather[0].description,
+                min: main.temp_min,
+                max: main.temp_max,
+                temp: main.temp
+            }           
+        }catch (error) {            
+            return [];
+        }
     }
 
 }
